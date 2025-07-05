@@ -388,7 +388,7 @@ window.addEventListener('DOMContentLoaded', () => {
   currentContainer = layar1;
 
   // Load konten awal (misalnya loading-bar.html)
-  loadContent('404.html'); ///////////////////////////////////////////////////////////////////////////////////////ganti
+  loadContent('ohh.html'); ///////////////////////////////////////////////////////////////////////////////////////ganti
 
   // 🔊 Mainkan suara popup-open saat pertama kali muncul
   popupOpenSound.currentTime = 0;
@@ -491,44 +491,44 @@ function animateLoadingNumber() {
 //////////////frolion fungsi///////////////////////
 function spawnFrolion() {
   const layar2 = document.getElementById("layar2");
-  const frolion = document.createElement("img");
+  const Frolion = document.createElement("img");
 
-  frolion.src = "asset/Frolion/Frolion_Move_GIF.gif";
-  frolion.classList.add("frolion");
+  Frolion.src = "asset/Frolion/Frolion_Move_GIF.gif";
+  Frolion.classList.add("Frolion");
 
   const topMax = layar2.offsetHeight - 50;
   const randomTop = Math.random() * topMax;
-  frolion.style.top = `${randomTop}px`;
+  Frolion.style.top = `${randomTop}px`;
 
   const duration = 2 + Math.random() * 3;
-  frolion.style.animationDuration = `${duration}s`;
+  Frolion.style.animationDuration = `${duration}s`;
 
   // Saat diklik → ganti animasi ke Frolion mati
-  frolion.addEventListener("click", () => {
+  Frolion.addEventListener("click", () => {
     // ✅ 1. Kunci posisi terakhir
-    const computedStyle = window.getComputedStyle(frolion);
+    const computedStyle = window.getComputedStyle(Frolion);
     const currentRight = computedStyle.right;
     const currentTop = computedStyle.top;
 
-    frolion.style.animation = "none"; // hentikan animasi gerak
-    frolion.style.right = currentRight;
-    frolion.style.top = currentTop;
+    Frolion.style.animation = "none"; // hentikan animasi gerak
+    Frolion.style.right = currentRight;
+    Frolion.style.top = currentTop;
 
     // ✅ 2. Ganti ke animasi mati
-    frolion.src = "asset/Frolion/Frolion_Death_GIF.gif";
-    frolion.style.pointerEvents = "none";
+    Frolion.src = "asset/Frolion/Frolion_Death_GIF.gif";
+    Frolion.style.pointerEvents = "none";
 
     // ✅ 3. Hapus setelah efek selesai (sesuaikan durasi gif)
     setTimeout(() => {
-      frolion.remove();
+      Frolion.remove();
     }, 300); // durasi GIF mati
   });
 
-  layar2.appendChild(frolion);
+  layar2.appendChild(Frolion);
 
   // Auto-remove setelah animasi gerak selesai
   setTimeout(() => {
-    if (frolion.parentNode) frolion.remove();
+    if (Frolion.parentNode) Frolion.remove();
   }, duration * 1000);
 }
 
