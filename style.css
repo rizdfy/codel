@@ -1,0 +1,429 @@
+body {
+  background: #bcd6e2;
+  font-family: 'Gunship Expanded', sans-serif;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.popup {
+  height: auto;
+  border: 2px solid #7fb6cb;
+  background-color: #223140;
+  box-shadow: inset 0 0 0 2px #3a94af;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  transition: height 0.4s ease;
+  justify-content: flex-start;
+}
+@media (max-width: 30px) {
+  .popup {
+    width: 80vw;
+    max-width: 90vw;
+    font-size: 10px;
+  }
+
+  .popup-header,
+  .popup-footer {
+    font-size: 10px;
+    height: 22px;
+  }
+
+  .popup-content {
+    padding: 6px;
+  }
+}
+
+@keyframes popup-scanner-open {
+  0% { transform: scaleX(0) scaleY(0); opacity: 0; }
+  50% { transform: scaleX(1) scaleY(0.1); opacity: 0.5; }
+  100% { transform: scaleX(1) scaleY(1); opacity: 1; }
+}
+
+@keyframes popup-scanner-close {
+  0% { transform: scaleX(1) scaleY(1); opacity: 1; }
+  50% { transform: scaleX(1) scaleY(0.1); opacity: 0.5; }
+  100% { transform: scaleX(0) scaleY(0); opacity: 0; }
+}
+
+.popup.opening {
+  animation: popup-scanner-open 500ms ease-out forwards;
+  transform-origin: center top;
+}
+
+.popup.closing {
+  animation: popup-scanner-close 500ms ease-in forwards;
+  transform-origin: center top;
+}
+
+.popup-header {
+  background-color: #3a94af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  padding: 0 5px;
+  border: 2px solid #7fb6cb;
+  font-size: 8px;
+  font-weight: bold;
+  color: #ccefff;
+  cursor: move;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  height: 100%;
+}
+
+.header-left .box {
+  width: 50px;
+  height: 16px;
+  background: #0d3c53;
+  margin-right: 2px;
+  margin-top: 2px;
+  color: #ccefff;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.close-btn {
+  display: flex;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-box.left {
+  width: 20px;
+  height: 100%;
+  background-color: #bcd6e2;
+}
+
+.btn-box.right {
+  width: 20px;
+  height: 100%;
+  background-color: #174d61;
+  color: #bcd6e2;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px #bcd6e2;
+}
+
+.popup-content {
+  background-color: #223140;
+  padding: 10px;
+  color: white;
+  overflow: hidden;
+  flex: 1 1 auto;
+  max-height: 0;
+  opacity: 0;
+  display: none;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.popup-content.expand {
+  max-height: 500px;
+  opacity: 1;
+  display: flex;
+}
+
+.popup-footer {
+  background-color: #3a94af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 5px;
+  border: 2px solid #7fb6cb;
+}
+
+.footer-box {
+  display: flex;
+  gap: 2px;
+}
+
+.footer-box div {
+  width: 20px;
+  height: 16px;
+  background-color: #0d3c53;
+}
+
+.footer-box .middle {
+  background-color: #245d74;
+}
+
+.footer-box .highlight {
+  background-color: #b8d8ea;
+  width: 50px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #b8d8ea;
+  transition: transform 0.2s;
+}
+
+.toggle-btn.up {
+  transform: rotate(180deg);
+  color: #111;
+}
+
+.resizer {
+  position: absolute;
+  background: transparent;
+}
+
+.resizer.right {
+  width: 10px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  cursor: ew-resize;
+  position: absolute;
+}
+
+.resizer.bottom {
+  width: 100%;
+  height: 10px;
+  bottom: 0;
+  left: 0;
+  cursor: ns-resize;
+  position: absolute;
+}
+
+.resizer.corner {
+  width: 15px;
+  height: 15px;
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+  position: absolute;
+}
+
+.hidden { display: none; }
+
+
+
+.laptop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #242B2E;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.screen {
+  position: relative;
+  width: 90vw;
+  max-width: 450px;
+  aspect-ratio: 7 / 5;
+  margin: 0;
+  padding: 0;
+}
+
+.screen-inner {
+  position: relative; /* ini penting untuk absolute popup */
+  top: 8%;
+  left: 5%;
+  width: 90%;
+  height: 84%;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.screen-top .screen-inner {
+  background-image: url('layar1.png');
+}
+
+.screen-bottom .screen-inner {
+  background-image: url('layar2.png');
+}
+
+.border {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+.loading-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #174d61;
+  border: 2px solid #0d3c53;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.loading-bar-inner {
+  width: 0%;
+  height: 100%;
+  background-color: #b8d8ea;
+  transition: width 0.05s linear;
+}
+
+.loading-percentage {
+  font-size: 10px;
+  color: #bcd6e2;
+  text-align: right;
+}
+
+
+
+
+
+
+
+.not-found {
+  width: 100%;
+  height: 100%;
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-box {
+  text-align: center;
+  color: #ff6b6b;
+  font-family: 'Gunship Expanded', monospace;
+  padding: 20px;
+  background-color: #223140;
+}
+
+.not-found-code {
+  font-size: 20px;
+  margin: 0;
+  color: #ff4444;
+}
+
+.not-found-message {
+  margin: 8px 0;
+  font-size: 10px;
+}
+
+.not-found-filename {
+  font-size: 10px;
+  color: #aaa;
+}
+
+
+
+
+
+
+
+.file-lain-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  background-color: #223140;
+}
+
+.file-lain-content {
+  font-size: 10px;
+  color: #bcd6e2;
+  padding: 20px 30px;
+  font-family: 'Gunship Expanded', monospace;
+  text-align: center;
+}
+
+.ohh-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  background-color: #223140;
+}
+
+.ohh-content {
+  font-size: 10px;
+  color: #bcd6e2;
+  padding: 20px 30px;
+  font-family: 'Gunship Expanded', monospace;
+  text-align: center;
+}
+
+
+
+
+
+
+.frolion {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: 0;
+  right: -60px;
+  pointer-events: auto;
+  cursor: pointer;
+  animation-name: fly-left;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fly-left {
+  from {
+    right: -60px;
+  }
+  to {
+    right: 100%;
+  }
+}

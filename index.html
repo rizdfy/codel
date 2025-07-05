@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Retro Draggable Popup</title>
+  <link href="https://fonts.cdnfonts.com/css/gunship-expanded" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="laptop-container">
+  <div class="screen screen-top">
+    <img src="border-layar1.png" class="border" />
+    <div class="screen-inner" id="layar1"></div>
+  </div>
+  <div class="screen screen-bottom">
+    <img src="border-layar2.png" class="border" />
+    <div class="screen-inner" id="layar2"></div>
+  </div>
+</div>
+
+
+
+
+<div class="popup opening" id="popupBox">
+  <div class="popup-header" id="popupHeader">
+    <div class="header-left">
+      <div class="box">ㅁ⇩☉▱</div>
+      <div class="box">▱∆.↪</div>
+    </div>
+    <div class="header-title"></div>
+    <div class="header-right">
+      <button class="close-btn" onclick="closePopup()">
+        <div class="btn-box left"></div>
+        <div class="btn-box right">X</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="popup-content hidden" id="popupContent">
+    
+  </div>
+
+  <div class="popup-footer">
+    <div class="footer-box">
+      <div></div>
+      <div class="middle"></div>
+      <div class="highlight"></div>
+    </div>
+    <button class="toggle-btn" id="toggleBtn" onclick="togglePopup()">▼</button>
+  </div>
+
+  <!-- Resizers -->
+  <div class="resizer right" id="resizerRight"></div>
+  <div class="resizer bottom" id="resizerBottom"></div>
+  <div class="resizer corner" id="resizerCorner"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
